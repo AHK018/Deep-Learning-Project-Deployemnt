@@ -8,6 +8,7 @@ from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from torchvision.transforms import functional as F
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from flask_cors import CORS
+
 # Initialize the Flask application
 app = Flask(__name__)
 CORS(app)
@@ -22,7 +23,7 @@ def get_model(num_classes):
     return model
 
 model = get_model(num_classes)
-model.load_state_dict(torch.load(model_save_path))
+model.load_state_dict(torch.load(model_save_path, map_location='cpu'))
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 model.to(device)
 model.eval()
