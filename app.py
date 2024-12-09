@@ -23,7 +23,7 @@ def get_model(num_classes):
     return model
 
 model = get_model(num_classes)
-model.load_state_dict(torch.load(model_save_path, map_location='cpu'))
+model.load_state_dict(torch.load(model_save_path, map_location='cpu'), strict=False)
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 model.to(device)
 model.eval()
