@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app)
 # Load the model
 num_classes = 2  # knife + background
-model_save_path = "knife_detection_fasterrcnn1.pth"
+model_save_path = "knife_detection_fasterrcnn.pth"
 
 def get_model(num_classes):
     model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")
@@ -23,7 +23,7 @@ def get_model(num_classes):
     return model
 
 model = get_model(num_classes)
-model.load_state_dict(torch.load(model_save_path, weights_only=False, map_location=torch.device('cpu')))
+model.load_state_dict(torch.load(model_save_path, map_location=torch.device('cpu')))
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 model.to(device)
 model.eval()
