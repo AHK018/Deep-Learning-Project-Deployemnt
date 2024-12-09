@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app)
 # Load the model
 num_classes = 2  # knife + background
-model_save_path = "knife_detection_fasterrcnn.pth"
+model_save_path = "knife_detection_fasterrcnn1.pth"
 
 def get_model(num_classes):
     model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")
